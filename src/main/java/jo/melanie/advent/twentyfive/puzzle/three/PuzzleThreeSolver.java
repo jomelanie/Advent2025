@@ -7,9 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Stream;
 
 public class PuzzleThreeSolver extends PuzzleSolver {
 
@@ -60,12 +58,11 @@ public class PuzzleThreeSolver extends PuzzleSolver {
 
     private BigInteger largestJoltageForPack(String pack) {
 
-        return this.part == 2 ?
-        largestJoltageUsingNNumbers(pack, 12) :
-        largestJoltageUsingTwoNumbers(pack);
+        final int numOfBatteries = this.part == 2 ? 12 : 2;
+        return largestJoltageForGivenNumberOfBatteries(pack, numOfBatteries);
     }
 
-    private BigInteger largestJoltageUsingNNumbers(String pack, int numBatteries) {
+    private BigInteger largestJoltageForGivenNumberOfBatteries(String pack, int numBatteries) {
 
         final List<Integer> batteryValues = new ArrayList<>();
         for (char c : pack.toCharArray()) {
@@ -99,23 +96,4 @@ public class PuzzleThreeSolver extends PuzzleSolver {
         return new BigInteger(finalJoltage.toString());
     }
 
-    private BigInteger largestJoltageUsingTwoNumbers(String pack) {
-        int largestFirstJoltage  = 0;
-        int largestSecondJoltage = 0;
-        for (int i = 0; i < pack.length(); i++) {
-            char batteryJoltageChar = pack.charAt(i);
-            final int batteryJoltage = Character.getNumericValue(batteryJoltageChar);
-            if (notTheLastBattery(pack, i) && batteryJoltage > largestFirstJoltage) {
-                largestFirstJoltage = batteryJoltage;
-                largestSecondJoltage = 0;
-            } else if (batteryJoltage > largestSecondJoltage) {
-                largestSecondJoltage = batteryJoltage;
-            }
-        }
-        return BigInteger.valueOf(largestFirstJoltage * 10 + largestSecondJoltage);
-    }
-
-    private static boolean notTheLastBattery(String pack, int i) {
-        return i < pack.length() - 1;
-    }
 }
