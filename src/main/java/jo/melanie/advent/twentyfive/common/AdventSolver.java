@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class AdventSolver {
 
-    private final static int PUZZLE_NUMBER = 3;
+    private final static int PUZZLE_NUMBER = 4;
 
     public static void main(String[] args) {
 
