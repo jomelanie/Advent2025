@@ -25,7 +25,18 @@ public class PuzzleFourSolver extends PuzzleSolver {
     protected String solve() {
         final List<String> input = inputForPuzzle();
         final PrintingFloor floor = new PrintingFloor(input);
-        return String.valueOf(floor.totalPapersHavingMaxPaperNeighbours(4));
+
+        if (this.part == 1) {
+            return String.valueOf(floor.totalPapersHavingMaxPaperNeighbours(4));
+        } else {
+            int totalPapersRemoved = 0;
+            int papersRemoved;
+            while ((papersRemoved = floor.removePaperWithMaxNeighboursAndUpdateNeighbourCount(4)) != 0) {
+                totalPapersRemoved += papersRemoved;
+            }
+            return String.valueOf(totalPapersRemoved);
+        }
+
     }
 
     private List<String> inputForPuzzle() {

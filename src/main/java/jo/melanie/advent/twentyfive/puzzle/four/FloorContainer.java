@@ -13,8 +13,8 @@ public class FloorContainer {
         return this.containerContents;
     }
 
-    public void addPaperNeighbour() {
-        this.paperNeighbours++;
+    public void addPaperNeighbour(int numOfPaperNeighboursToAdd) {
+        this.paperNeighbours += numOfPaperNeighboursToAdd;
     }
 
     public int getPaperNeighbours() {

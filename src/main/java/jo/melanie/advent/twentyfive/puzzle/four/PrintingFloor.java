@@ -1,6 +1,5 @@
 package jo.melanie.advent.twentyfive.puzzle.four;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class PrintingFloor {
@@ -23,10 +22,26 @@ public class PrintingFloor {
 
     }
 
+    public int removePaperWithMaxNeighboursAndUpdateNeighbourCount(int max) {
+        int totalPapersRemoved = 0;
+        for (int i = 0; i < this.containers.length; i++) {
+            for (int j = 0; j < this.containers[i].length; j++) {
+                final FloorContainer container = this.containers[i][j];
+                if (container.getContainerContents() == ContainerContents.PAPER &&
+                        container.getPaperNeighbours() < max) {
+                    container.setContainerContents(ContainerContents.EMPTY);
+                    totalPapersRemoved++;
+                    updateNeighbourPaperCount(i, j, -1);
+                }
+            }
+        }
+        return totalPapersRemoved;
+    }
+
     public int totalPapersHavingMaxPaperNeighbours(int max) {
         int totalPapers = 0;
-        for (FloorContainer[] containerRow : this.containers) {
-            for (FloorContainer container : containerRow) {
+        for (FloorContainer[] floorContainers : this.containers) {
+            for (final FloorContainer container : floorContainers) {
                 if (container.getContainerContents() == ContainerContents.PAPER &&
                         container.getPaperNeighbours() < max) {
                     totalPapers++;
@@ -55,7 +70,7 @@ public class PrintingFloor {
                 char inputCharacter = row.charAt(j);
                 if (containerHasPaperInIt(inputCharacter)) {
                     this.containers[i][j].setContainerContents(ContainerContents.PAPER);
-                    updateNeighbourPaperCount(i, j);
+                    updateNeighbourPaperCount(i, j, 1);
                 }
             }
         }
@@ -65,24 +80,24 @@ public class PrintingFloor {
     //  00 01 02
     //  10 11 12
     //  20 21 22
-    private void updateNeighbourPaperCount(int row, int column) {
-        updatePaperCountFor(row - 1, column - 1);
-        updatePaperCountFor(row - 1, column);
-        updatePaperCountFor(row - 1, column + 1);
+    private void updateNeighbourPaperCount(int row, int column, int paperNeighboursToAdd) {
+        updatePaperCountFor(row - 1, column - 1, paperNeighboursToAdd);
+        updatePaperCountFor(row - 1, column, paperNeighboursToAdd);
+        updatePaperCountFor(row - 1, column + 1, paperNeighboursToAdd);
 
-        updatePaperCountFor(row, column - 1);
-        updatePaperCountFor(row, column + 1);
+        updatePaperCountFor(row, column - 1, paperNeighboursToAdd);
+        updatePaperCountFor(row, column + 1, paperNeighboursToAdd);
 
-        updatePaperCountFor(row + 1, column - 1);
-        updatePaperCountFor(row + 1, column);
-        updatePaperCountFor(row + 1, column + 1);
+        updatePaperCountFor(row + 1, column - 1, paperNeighboursToAdd);
+        updatePaperCountFor(row + 1, column, paperNeighboursToAdd);
+        updatePaperCountFor(row + 1, column + 1, paperNeighboursToAdd);
     }
 
-    private void updatePaperCountFor(int row, int column) {
+    private void updatePaperCountFor(int row, int column, int papersToAdd) {
 
         if (row >=0 && row < this.rowSize &&
             column >=0 && column < this.columnSize) {
-            this.containers[row][column].addPaperNeighbour();
+            this.containers[row][column].addPaperNeighbour(papersToAdd);
         }
 
     }
