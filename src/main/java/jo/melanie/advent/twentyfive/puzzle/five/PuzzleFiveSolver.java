@@ -27,11 +27,17 @@ public class PuzzleFiveSolver extends PuzzleSolver {
 
         final FreshFoodDatabase foodDatabase = new FreshFoodDatabase(freshIds);
 
-        final int numberOfFreshIdsInStock = this.useTestData ?
-                findTotalFreshIdsFromTestData(foodDatabase)
-                : findTotalFreshIdsFromPuzzleData(foodDatabase);
+        if (this.part == 1 ) {
 
-        return String.valueOf(numberOfFreshIdsInStock);
+            final int numberOfFreshIdsInStock = this.useTestData ?
+                    findTotalFreshIdsFromTestData(foodDatabase)
+                    : findTotalFreshIdsFromPuzzleData(foodDatabase);
+
+            return String.valueOf(numberOfFreshIdsInStock);
+        }
+
+        return foodDatabase.totalNumberOfFreshIds();
+
     }
 
     private int findTotalFreshIdsFromPuzzleData(FreshFoodDatabase foodDatabase) {
