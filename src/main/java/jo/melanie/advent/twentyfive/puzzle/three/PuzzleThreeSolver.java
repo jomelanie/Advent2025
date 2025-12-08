@@ -16,8 +16,8 @@ public class PuzzleThreeSolver extends PuzzleSolver {
     }
 
     @Override
-    protected String getFilename() {
-        return "src/main/resources/three.txt";
+    protected String getInputFilePath() {
+        return PUZZLE_INPUT_PATH + "three.txt";
     }
 
     @Override
@@ -30,7 +30,7 @@ public class PuzzleThreeSolver extends PuzzleSolver {
     private String getSolutionForFile() {
 
         BigInteger result = BigInteger.ZERO;
-        try (BufferedReader br = new BufferedReader(new FileReader(getFilename()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(getInputFilePath()))) {
             String line;
             while ((line = br.readLine()) != null) {
                 final BigInteger joltage = largestJoltageForPack(line);

@@ -1,5 +1,6 @@
 package jo.melanie.advent.twentyfive.common;
 
+import jo.melanie.advent.twentyfive.puzzle.five.PuzzleFiveSolver;
 import jo.melanie.advent.twentyfive.puzzle.four.PuzzleFourSolver;
 import jo.melanie.advent.twentyfive.puzzle.one.PuzzleOneSolver;
 import jo.melanie.advent.twentyfive.puzzle.three.PuzzleThreeSolver;
@@ -14,6 +15,7 @@ public class SolvingFactory {
             case 2 -> new PuzzleTwoSolver(useTestData, part);
             case 3 -> new PuzzleThreeSolver(useTestData, part);
             case 4 -> new PuzzleFourSolver(useTestData, part);
+            case 5 -> new PuzzleFiveSolver(useTestData, part);
             default -> throw new UnsupportedOperationException();
         };
 

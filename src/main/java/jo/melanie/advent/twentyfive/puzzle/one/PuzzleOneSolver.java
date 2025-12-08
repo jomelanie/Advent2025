@@ -16,8 +16,8 @@ public class PuzzleOneSolver extends PuzzleSolver {
     }
 
     @Override
-    protected String getFilename() {
-        return "src/main/resources/one.txt";
+    protected String getInputFilePath() {
+        return PUZZLE_INPUT_PATH + "one.txt";
     }
 
     @Override
@@ -53,7 +53,7 @@ public class PuzzleOneSolver extends PuzzleSolver {
 
         SafeDial safeDial = new SafeDial(this.includePassingZeroInCount);
 
-        try (BufferedReader br = new BufferedReader(new FileReader(getFilename()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(getInputFilePath()))) {
             String line;
             while ((line = br.readLine()) != null) {
                 safeDial.turnDial(line);

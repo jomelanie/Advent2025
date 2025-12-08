@@ -20,8 +20,8 @@ public class PuzzleTwoSolver extends PuzzleSolver {
     }
 
     @Override
-    protected String getFilename() {
-        return "src/main/resources/two.txt";
+    protected String getInputFilePath() {
+        return PUZZLE_INPUT_PATH + "two.txt";
     }
 
     @Override
@@ -159,7 +159,7 @@ public class PuzzleTwoSolver extends PuzzleSolver {
 
     private String getFileInput() {
         final String line;
-        try (BufferedReader br = new BufferedReader(new FileReader(getFilename()))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(getInputFilePath()))) {
             line = br.readLine(); // should only be 1
         } catch (IOException e) {
             System.err.println("Error reading file.");

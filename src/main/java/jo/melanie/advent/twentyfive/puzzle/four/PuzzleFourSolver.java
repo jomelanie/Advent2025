@@ -2,8 +2,6 @@ package jo.melanie.advent.twentyfive.puzzle.four;
 
 import jo.melanie.advent.twentyfive.common.PuzzleSolver;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,8 +15,8 @@ public class PuzzleFourSolver extends PuzzleSolver {
     }
 
     @Override
-    protected String getFilename() {
-        return "src/main/resources/four.txt";
+    protected String getInputFilePath() {
+        return PUZZLE_INPUT_PATH + "four.txt";
     }
 
     @Override
@@ -46,7 +44,7 @@ public class PuzzleFourSolver extends PuzzleSolver {
     }
 
     private List<String> fileInput() {
-        final Path filePath = Paths.get(getFilename());
+        final Path filePath = Paths.get(getInputFilePath());
         try {
             return Files.readAllLines(filePath);
         } catch (IOException e) {

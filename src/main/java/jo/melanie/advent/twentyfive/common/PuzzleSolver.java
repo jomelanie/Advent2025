@@ -2,6 +2,7 @@ package jo.melanie.advent.twentyfive.common;
 
 public abstract class PuzzleSolver {
 
+    protected static final String PUZZLE_INPUT_PATH = "src/main/resources/";
     protected final boolean useTestData;
     protected final int part;
 
@@ -10,7 +11,7 @@ public abstract class PuzzleSolver {
         this.part = part;
     }
 
-    protected abstract String getFilename();
+    protected abstract String getInputFilePath();
 
     protected abstract String solve();
 
